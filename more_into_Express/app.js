@@ -1,12 +1,14 @@
 var app = require("express")();
 app.set("view engine", "ejs");
 
+
 app.get("/",function(req,res){
     res.render("home");
 });
 
 app.get("/friends",function(req,res){
-    res.render("friendList");
+    var friends = ["Bidur","Ballu","dipesh","karun"];
+    res.render("friendList", {friends: friends});
 });
 
 
