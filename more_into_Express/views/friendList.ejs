@@ -6,4 +6,9 @@
     <li> <%=friend %></li>
 <% });%>
 
+<form action="/addFriend" method="POST">
+    <input type="text" name="newFriend" placeholder="add new friend">
+    <button>new friend Submit</button>
+</form>
+
 <% include partials/footer %>
