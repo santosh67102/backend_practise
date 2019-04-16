@@ -2,7 +2,16 @@ var express = require("express");
 var request = require("request");
 var app = express();
 
-app.get
+request("http://www.omdbapi.com/?t=titanic&y=1997", function(error, response, body){
+    console.log(body);
+        if(!error && response.statusCode == 200){
+            console.log(body);
+        }
+    })
+app.get("/results", function(req,res){
+    
+    res.send("hello, it works");
+});
 
 
 
