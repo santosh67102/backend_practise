@@ -1,0 +1,2605 @@
+{
+
+    "testCase": {
+
+        "name": "MAR_TC_16",
+
+        "curator": "ej3117",
+
+        "application": "MAR",
+
+        "configuration": {
+
+            "gitUrl": "https://git.express-scripts.com/ExpressScripts/test-automation-app-regression-suite.git",
+
+            "branchName": "master",
+
+            "screenshots": "on",
+
+            "host": "mcfl1g05.medco.com",
+
+            "port": "23",
+
+            "browsersetup": {
+
+                "platform": "local",
+
+                "browsername": "ie"
+
+            },
+
+            "tdmserviceurl": "http://tdmservices-100.apps.ch3pcf01.express-scripts.com/daas",
+
+            "tdmUser": "QACR01",
+
+            "tdmPwd": "lBNniUxbD8fl7KqCx0MLug==",
+
+            "encoded": true,
+
+            "dbEndPoints": [
+
+                {
+
+                    "configName": "db2",
+
+                    "schema": "DB0QPOL0",
+
+                    "database": "DB2E",
+
+                    "port": "50000",
+
+                    "host": "DB2CONNA.medco.com",
+
+                    "serverName": "DB2CONNA",
+
+                    "dbType": "db2",
+
+                    "user": "QACR01",
+
+                    "password": "u2IERvDpyCzQrkxZYUKO7w==",
+
+                    "encoded": true
+
+                },
+
+                {
+
+                    "configName": "DB0QNRX0",
+
+                    "serverName": "DB0QNRX0",
+
+                    "dbType": "db2",
+
+                    "host": "DB2CONNA.medco.com",
+
+                    "port": "50000",
+
+                    "database": "DB2B",
+
+                    "schema": "DB0QNRX0",
+
+                    "user": "QACR01",
+
+                    "password": "u2IERvDpyCzQrkxZYUKO7w==",
+
+                    "encoded": true
+
+                }
+
+            ]
+
+        },
+
+        "testSteps": [
+
+            {
+
+                "dataOperation": {
+
+                    "configName": "DB0QNRX0",
+
+                    "serverName": "DB0QNRX0",
+
+                    "query": "SELECT VARCHAR_FORMAT(CURRENT DATE - 10 DAYS, 'YYYY-MM-DD') AS CURRENT_DATE  FROM SYSIBM.SYSDUMMY1",
+
+                    "result": "CUR_DATE_dbresponse"
+
+                }
+
+            },
+
+            {
+
+                "dataOperation": {
+
+                    "configName": "db2",
+
+                    "serverName": "DB2CONNA",
+
+                    "query": "SELECT MEMBERSHIP_NBR,NRX_GROUP_OP_ID FROM DB0QPOL0.POLIEA00  WHERE ELEC_ADDR_TXT <>' ' AND NRX_GROUP_OP_ID <>' 'AND INSERT_TMS >'${CUR_DATE_dbresponse.result[0].CURRENT_DATE}-06.49.30.621071' ",
+
+                    "result": "dbresponse"
+
+                }
+
+            },
+
+            {
+
+                "literalvalues": {
+
+                    "memberId": "${dbresponse.result[0].MEMBERSHIP_NBR}",
+
+                    "usergeneric": "QACR01",
+
+                    "gpasswordmain": "u2IERvDpyCzQrkxZYUKO7w==",
+
+                    "gpasswordlan": "lBNniUxbD8fl7KqCx0MLug==",
+
+                    "usergeneric1": "EJ3117",
+
+                    "gpasswordmain1": "vJd2jiwiTiBRHWavatc6kQ==",
+
+                    "gpasswordlan1": "Itg9NzAnxQv7Ynk0ZxL72g==",
+
+                    "emailAddress": "santgtrx@express-scripts.com",
+
+                    "contactFname": "Santos",
+
+                    "contactLname": "Goutax",
+
+                    "phoneNumber":"2012691234",
+
+                    "phoneA":"201",
+
+                    "phoneB":"269",
+
+                    "phoneC":"1234",
+
+                    "DEAnum": "BL5216355",
+
+                    "drugName": "ATENOLOL",
+
+                    "drugNum": "9494",
+
+                    "drugStrength": "50",
+
+                    "drugDirections": "TAKE 1 TABLET DAILY",
+
+                    "drugQuantity": "10",
+
+                    "drugRefills": "0",
+
+                    "eSDurl": "https://esdqa.medco.com/im0qcsr1/b2b_index.jsp?SSOFlag=Disable",
+
+                    "tmwurl": "https://wasihs70tmwqa2/pcm/ADloginPage.jsp?NoSSO=Y",
+
+                    "vRxurl": "http://wasihs70verbalrx-qa/VRX/index.html#login"
+
+                }
+
+            },
+
+            {
+
+                "navigate": {
+
+                    "url": "${eSDurl}"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "frame": "content",
+
+                    "selectBy": "name",
+
+                    "elementID": "username",
+
+                    "value": "${usergeneric}"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "selectBy": "name",
+
+                    "elementID": "password",
+
+                    "value": "${gpasswordlan}"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "5"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "name",
+
+                    "elementID": "login"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//a[@class='p-btn']"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "5"
+
+                }
+
+            },
+
+            {
+
+                "do": {}
+
+            },
+
+            {
+
+                "click": {
+
+                    "mouseHover": "yes",
+
+                    "selectBy": "id",
+
+                    "elementID": "div_0,div_0_0"
+
+                }
+
+            },
+
+            {
+
+                "getValue": {
+
+                    "frame": "content",
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//span[@class='sectionHeader']",
+
+                    "value": "newSearchPage"
+
+                }
+
+            },
+
+            {
+
+                "while": {
+
+                    "expression": "$notequal(${newSearchPage},New Search)",
+
+                    "counter": 2
+
+                }
+
+            },
+
+            {
+
+                "select": {
+
+                    "frame": "content",
+
+                    "selectBy": "name",
+
+                    "elementID": "searchType",
+
+                    "value": "Member #"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "frame": "content",
+
+                    "selectBy": "name",
+
+                    "elementID": "memberNumber",
+
+                    "value": "${memberId}"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "3"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "frame": "content",
+
+                    "selectBy": "name",
+
+                    "elementID": "submitb"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "10"
+
+                }
+
+            },
+
+            {
+
+                "getValue": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//font[contains(text(),'Patient Selection')]",
+
+                    "value": "patientSelection"
+
+                }
+
+            },
+
+            {
+
+                "if": {
+
+                    "expression": "$equal(${patientSelection},Patient Selection)"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "frame": "content",
+
+                    "selectBy": "xpath",
+
+                    "elementID": "/html[1]/body[1]/table[2]/tbody[1]/tr[2]/td[3]/table[2]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[2]/td[2]/font[1]/a[1]"
+
+                }
+
+            },
+
+            {
+
+                "endif": {}
+
+            },
+
+            {
+
+                "getValue": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "/html/body/table[2]/tbody/tr[1]/th/font",
+
+                    "value": "memberSelection"
+
+                }
+
+            },
+
+            {
+
+                "if": {
+
+                    "expression": "$equal(${memberSelection},Member Selection)"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "frame": "content",
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//a[@href='javascript:selectMember(0)']"
+
+                }
+
+            },
+
+            {
+
+                "endif": {}
+
+            },
+
+            {
+
+                "click": {
+
+                    "frame": "content",
+
+                    "mouseHover": "yes",
+
+                    "selectBy": "id",
+
+                    "elementID": "div_12,div_12_1"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "10"
+
+                }
+
+            },
+
+            {
+
+                "do": {}
+
+            },
+
+            {
+
+                "click": {
+
+                    "frame": "content",
+
+                    "mouseHover": "yes",
+
+                    "selectBy": "id",
+
+                    "elementID": "div_12,div_12_2"
+
+                }
+
+            },
+
+            {
+
+                "getValue": {
+
+                              "frame": "content",
+
+                    "selectBy": "xpath",
+
+                    "elementID": "/html/body/div[4]/div/div/div/div/div/section/div[1]/table[1]/tbody/tr[1]/th",
+
+                    "value": "patientLevelSettings"
+
+                }
+
+            },
+
+            {
+
+                "while": {
+
+                    "expression": "$notequal(${patientLevelSettings},Text Preference Status)",
+
+                    "counter": 2
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//button[@class='stdbtn primary _editPreferences']"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "10"
+
+                }
+
+            },
+
+            {
+
+                "select": {
+
+                              "frame": "content",
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//div[contains(@class,'_selected')]//th[contains(text(),'Reminders and Order Status')]/following::td[1]/select",
+
+                    "value": "Phone"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                              "frame": "content",
+
+                    "selectBy": "xpath",
+
+                    "elementID": "/html/body/div[4]/div/div/div[2]/div/div/section/div[2]/div/div/button[1]"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "20"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "frame": "content",
+
+                    "mouseHover": "yes",
+
+                    "selectBy": "id",
+
+                    "elementID": "div_12,div_12_3"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "frame": "content",
+
+                    "selectBy": "xpath",
+
+                    "elementID": "/html[1]/body[1]/div[4]/div[7]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/div[1]/a[4]"
+
+                }
+
+            },
+
+            {
+
+                "getValue": {
+
+                    "frame": "content",
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//td[contains(text(), 'Phone:')]/following:://td[2]",
+
+                    "value": "phonevalid"
+
+                }
+
+            },
+
+            {
+
+                "if": {
+
+                    "expression": "$equal(${phonevalid},EMPTY)"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//a[@class='button']"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "3"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//img[@name='btn_add']"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//tr[@id='phoneNum_0']//input[@name='primaryRadio']"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//tr[@id='phoneNum_0']//input[@id='phoneNumber']",
+
+                    "value": "${phoneNumber}"
+
+                }
+
+            },
+
+            {
+
+                "select": {
+
+                    "frame": "content",
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//tr[@id='phoneNum_0']//select[@name='phoneTypeChkBox']",
+
+                    "value": "Home",
+
+                    "optional": "yes"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//img[@name='btn_submit']"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "10"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "frame": "content",
+
+                    "mouseHover": "yes",
+
+                    "selectBy": "id",
+
+                    "elementID": "div_12,div_12_3"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "3"
+
+                }
+
+            },
+
+            {
+
+                "endif": {}
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "3"
+
+                }
+
+            },
+
+            {
+
+                "browserclose": {
+
+                    "close": "true"
+
+                }
+
+            },
+
+            {
+
+                "navigate": {
+
+                    "url": "${vRxurl}"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-login:userid",
+
+                    "value": "${usergeneric}"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "selectBy": "name",
+
+                    "elementID": "root-login:password",
+
+                    "value": "${gpasswordlan}"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "5"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//*[@id='root-login:btnSubmit']"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//*[@id='root:leftMenuDiv']/a[1]"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-rx-ControllerOrderInfo:ContactFirstName",
+
+                    "value": "${contactFname}"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-rx-ControllerOrderInfo:ContactLastName",
+
+                    "value": "${contactLname}"
+
+                }
+
+            },
+
+            {
+
+                "select": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-rx-ControllerOrderInfo:ContactConnectCode",
+
+                    "value": "PH - PHARMACIST"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-rx-ControllerOrderInfo:deaSearch",
+
+                    "value": "${DEAnum}"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-rx-ControllerOrderInfo:btnNpiSearch"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "5"
+
+                }
+
+            },
+
+            {
+
+                "processKey": {
+
+                    "keyName": "PAGE_DOWN",
+
+                    "count": 1
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-rx-ControllerPrescriptionList-rxForm:0.pSearchMemberId",
+
+                    "value": "${memberId}"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-rx-ControllerPrescriptionList-rxForm:0.pSearchButton"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "5"
+
+                }
+
+            },
+
+            {
+
+                "getValue": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//legend[contains(text(),'Search Results')]",
+
+                    "value": "memberSearchResult"
+
+                }
+
+            },
+
+            {
+
+                "if": {
+
+                    "expression": "$equal(${memberSearchResult},Search Results)"
+
+                }
+
+            },
+
+            {
+
+                "getValue": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//input[@name='root-rx-ControllerPrescriptionList-rxForm:0.patientSearchResultsSelect']",
+
+                    "value": "priorityNum0",
+
+                    "attributeName": "value"
+
+                }
+
+            },
+
+            {
+
+                "if": {
+
+                    "expression": "$equal(${priorityNum0},0)"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//input[@name='root-rx-ControllerPrescriptionList-rxForm:0.patientSearchResultsSelect']",
+
+                    "optional": "yes"
+
+                }
+
+            },
+
+            {
+
+                "endif": {}
+
+            },
+
+            {
+
+                "getValue": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "(//input[@name='root-rx-ControllerPrescriptionList-rxForm:0.patientSearchResultsSelect'])[1]",
+
+                    "value": "priorityNum1",
+
+                    "attributeName": "value",
+
+                    "overRide": "true"
+
+                }
+
+            },
+
+            {
+
+                "if": {
+
+                    "expression": "$equal(${priorityNum1},0)"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "(//input[@name='root-rx-ControllerPrescriptionList-rxForm:0.patientSearchResultsSelect'])[1]",
+
+                    "optional": "yes"
+
+                }
+
+            },
+
+            {
+
+                "endif": {}
+
+            },
+
+            {
+
+                "getValue": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "(//input[@name='root-rx-ControllerPrescriptionList-rxForm:0.patientSearchResultsSelect'])[2]",
+
+                    "value": "priorityNum2",
+
+                    "attributeName": "value",
+
+                    "overRide": "true"
+
+                }
+
+            },
+
+            {
+
+                "if": {
+
+                    "expression": "$equal(${priorityNum2},0)"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "(//input[@name='root-rx-ControllerPrescriptionList-rxForm:0.patientSearchResultsSelect'])[2]",
+
+                    "optional": "yes"
+
+                }
+
+            },
+
+            {
+
+                "endif": {}
+
+            },
+
+            {
+
+                "getValue": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "(//input[@name='root-rx-ControllerPrescriptionList-rxForm:0.patientSearchResultsSelect'])[3]",
+
+                    "value": "priorityNum3",
+
+                    "attributeName": "value",
+
+                    "overRide": "true"
+
+                }
+
+            },
+
+            {
+
+                "if": {
+
+                    "expression": "$equal(${priorityNum3},0)"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "(//input[@name='root-rx-ControllerPrescriptionList-rxForm:0.patientSearchResultsSelect'])[3]",
+
+                    "optional": "yes"
+
+                }
+
+            },
+
+            {
+
+                "endif": {}
+
+            },
+
+            {
+
+                "getValue": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "(//input[@name='root-rx-ControllerPrescriptionList-rxForm:0.patientSearchResultsSelect'])[4]",
+
+                    "value": "priorityNum4",
+
+                    "attributeName": "value",
+
+                    "overRide": "true"
+
+                }
+
+            },
+
+            {
+
+                "if": {
+
+                    "expression": "$equal(${priorityNum4},0)"
+
+                }
+
+            },
+
+           {
+
+                "click": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "(//input[@name='root-rx-ControllerPrescriptionList-rxForm:0.patientSearchResultsSelect'])[4]",
+
+                    "optional": "yes"
+
+                }
+
+            },
+
+            {
+
+                "endif": {}
+
+            },
+
+            {
+
+                "getValue": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "(//input[@name='root-rx-ControllerPrescriptionList-rxForm:0.patientSearchResultsSelect'])[5]",
+
+                    "value": "priorityNum5",
+
+                    "attributeName": "value",
+
+                    "overRide": "true"
+
+                }
+
+            },
+
+            {
+
+                "if": {
+
+                    "expression": "$equal(${priorityNum5},0)"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "(//input[@name='root-rx-ControllerPrescriptionList-rxForm:0.patientSearchResultsSelect'])[5]",
+
+                    "optional": "yes"
+
+                }
+
+            },
+
+            {
+
+                "endif": {}
+
+            },
+
+            {
+
+                "endif": {}
+
+            },
+
+           
+
+            {
+
+                "click": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-rx-ControllerPrescriptionList-rxForm:0.ptSearchButtonSelect",
+
+                    "optional": "yes"
+
+                }
+
+            },
+
+            {
+
+                "getValue": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//input[@id='root-rx-ControllerPrescriptionList-rxForm:0.ptPhoneA']",
+
+                    "value": "phoneVerify"
+
+                }
+
+            },
+
+            {
+
+               "if":{
+
+                               "expression":"$equal(${phoneVerify},EMPTY)"
+
+               }
+
+            },
+
+           
+
+            {
+
+                "click": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//input[@id='root-rx-ControllerPrescriptionList-rxForm:0.ptEditCheckbox']"
+
+                }
+
+            },               
+
+            {
+
+                "input": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//input[@id='root-rx-ControllerPrescriptionList-rxForm:0.ptPhoneA']",
+
+                    "value": "${phoneA}"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//input[@id='root-rx-ControllerPrescriptionList-rxForm:0.ptPhoneB']",
+
+                    "value": "${phoneB}"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//input[@id='root-rx-ControllerPrescriptionList-rxForm:0.ptPhoneC']",
+
+                    "value": "${phoneC}"
+
+                }
+
+            },
+
+            {
+
+               "endif":{}
+
+            },
+
+            {
+
+                "getValue": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//div[@id='root-rx-ControllerPrescriptionList-rxForm:0.ptRxHistorySearchResults']",
+
+                    "value": "noRxError"
+
+                }
+
+            },
+
+            {
+
+                "if": {
+
+                    "expression": "$equal(${noRxError},No history available for the selected patient. Please enter Rx data manually.)"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//input[@id='root-rx-ControllerPrescriptionList-rxForm:0.rxDrugSearchTxt']",
+
+                    "value": "${drugName}"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-rx-ControllerPrescriptionList-rxForm:0.rxDrugSearchStrength",
+
+                    "value": "${drugStrength}"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-rx-ControllerPrescriptionList-rxForm:0.rxBtnDrugSearch"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "name",
+
+                    "elementID": "root-rx-ControllerPrescriptionList-rxForm:0.drugSearchSelect"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-rx-ControllerPrescriptionList-rxForm:0.drugSearchButtonSelect"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "3"
+
+                }
+
+            },
+
+            {
+
+                "endif": {}
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "name",
+
+                    "elementID": "root-rx-ControllerPrescriptionList-rxForm:0.rxHistorySearchSelect",
+
+                    "optional": "yes"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "name",
+
+                    "elementID": "root-rx-ControllerPrescriptionList-rxForm:0.rxHistoryButtonSelect",
+
+                    "optional": "yes"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "3"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-rx-ControllerPrescriptionList-rxForm:0.rxDirections",
+
+                    "value": "${drugDirections}",
+
+                    "optional": "yes"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-rx-ControllerPrescriptionList-rxForm:0.rxQuantity",
+
+                    "value": "${drugQuantity}"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-rx-ControllerPrescriptionList-rxForm:0.rxRefills",
+
+                    "value": "${drugRefills}"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-rx-ControllerPrescriptionList-rxForm:0.rxBtnVerifyVx"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "3"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-rx-ControllerPrescriptionList-rxForm:0.rxReviewed"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "id",
+
+                    "elementID": "root-rx:SubmitOrderButton"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                    "timeInMillis": "15"
+
+                }
+
+            },
+
+            {
+
+                "getValue": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//*[@id='root:submitConfirmationDiv']/div[2]",
+
+                    "value": "newInvoiceNum1"
+
+                }
+
+            },
+
+            {
+
+                "click": {
+
+                    "selectBy": "xpath",
+
+                    "elementID": "//a[contains(text(),'Retrieve Logs From Server')]"
+
+                }
+
+            },
+
+            {
+
+                "wait": {
+
+                   "timeInMillis": "5"
+
+                }
+
+            },
+
+            {
+
+                "literalvalues": {
+
+                    "newinvoiceNum": "$substring(${newInvoiceNum1},44,53)",
+
+                    "newfillNum": "$substring(${newInvoiceNum1},54,56)"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "row": 23,
+
+                    "column": 18,
+
+                    "value": "b"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "ENTER"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "Userid",
+
+                    "value": "${usergeneric}",
+
+                    "position": "after"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "Password",
+
+                    "value": "${gpasswordmain}",
+
+                    "position": "after",
+
+                    "encoded": true
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "ENTER"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "ENTER"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "Command",
+
+                    "value": "i all",
+
+                    "position": "after"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "ENTER"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "Command",
+
+                    "value": "MEDQA",
+
+                    "position": "after"
+
+                }
+
+            },
+
+            {
+
+               "input": {
+
+                    "keyname": "ENTER"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "USER",
+
+                    "value": "${usergeneric}",
+
+                    "position": "after"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "PASSWORD",
+
+                    "position": "after",
+
+                    "value": "${gpasswordmain}",
+
+                    "encoded": true
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "PHARMACY NUMBER",
+
+                    "value": "17",
+
+                    "position": "after"
+
+                }
+
+            },
+
+           {
+
+                "input": {
+
+                    "label": "NEXT SCREEN",
+
+                    "value": "men70",
+
+                    "position": "after"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "ENTER"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "ENTER"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "NEXT SCREEN",
+
+                    "value": "PRRSL",
+
+                    "position": "after"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "row": 22,
+
+                    "column": 8,
+
+                    "value": "$concat(${newinvoiceNum},${newfillNum})"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "ENTER"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "row": 0,
+
+                    "column": 47,
+
+                    "value": "OC"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "NEXT SCREEN",
+
+                    "value": "PRADD",
+
+                    "position": "after"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "ENTER"
+
+                }
+
+            },
+
+            {
+
+                "readValue": {
+
+                    "row": 3,
+
+                    "column": 7,
+
+                    "columnRange": 28,
+
+                    "value": "drugNotFoundMsg"
+
+                }
+
+            },
+
+            {
+
+                "do": {}
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "PF8"
+
+                }
+
+            },
+
+            {
+
+                "readValue": {
+
+                    "row": 13,
+
+                    "column": 3,
+
+                    "columnRange": 8,
+
+                    "value": "find1"
+
+                }
+
+            },
+
+            {
+
+                "readValue": {
+
+                    "row": 14,
+
+                    "column": 3,
+
+                    "columnRange": 8,
+
+                    "value": "find2"
+
+                }
+
+            },
+
+            {
+
+                "readValue": {
+
+                    "row": 15,
+
+                    "column": 3,
+
+                    "columnRange": 8,
+
+                    "value": "find3"
+
+                }
+
+            },
+
+            {
+
+                "readValue": {
+
+                    "row": 16,
+
+                    "column": 3,
+
+                    "columnRange": 8,
+
+                    "value": "find4"
+
+                }
+
+            },
+
+            {
+
+                "readValue": {
+
+                    "row": 17,
+
+                    "column": 3,
+
+                    "columnRange": 8,
+
+                    "value": "find5"
+
+                }
+
+            },
+
+            {
+
+                "readValue": {
+
+                    "row": 18,
+
+                    "column": 3,
+
+                    "columnRange": 8,
+
+                    "value": "find6"
+
+                }
+
+            },
+
+            {
+
+                "while": {
+
+                    "expression": "$and($notequal(${find1},DCNOW),$notequal(${find2},DCNOW),$notequal(${find3},DCNOW),$notequal(${find4},DCNOW),$notequal(${find5},DCNOW),$notequal(${find6},DCNOW))",
+
+                    "counter": 17
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "DCNOW-SEND TO DC CALLS NOW;ADD CMT",
+
+                    "value": "x",
+
+                    "position": "before"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "ENTER"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "PF3"
+
+                }
+
+            },
+
+            {
+
+                "if": {
+
+                    "expression": "$equal(${drugNotFoundMsg},DRUG RECORD NOT FOUND)"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "%DRUG NOT FOUND%",
+
+                    "value": "C",
+
+                    "position": "before"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "ENTER"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "row": 19,
+
+                    "column": 65,
+
+                    "value": "${drugNum}"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                   "keyname": "ENTER"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "row": 4,
+
+                    "column": 1,
+
+                    "value": "x"
+
+                }
+
+            },
+
+            {
+
+               "input": {
+
+                    "keyname": "PF5"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "QUICK SIG",
+
+                    "position": "after",
+
+                    "value": "01"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "Enter"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "row": 12,
+
+                    "column": 57,
+
+                    "value": "P"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "Enter"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "Orig-qty",
+
+                    "value": "5   ",
+
+                    "position": "after"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "Md Daw",
+
+                    "value": "Y",
+
+                    "position": "after"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "Pt Daw",
+
+                    "value": "N",
+
+                    "position": "after"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "Orig-rfls",
+
+                    "value": "3  ",
+
+                    "position": "after"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "Prt-Trip-Ticket",
+
+                    "value": "Y",
+
+                    "position": "after"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "Enter"
+
+                }
+
+            },
+
+            {
+
+                "readValue": {
+
+                    "row": 21,
+
+                    "column": 18,
+
+                    "columnRange": 19,
+
+                    "value": "acptcode"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "RX ACCEPT:",
+
+                    "value": "${acptcode}",
+
+                    "position": "after"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "ENTER"
+
+                }
+
+            },
+
+            {
+
+                "endif": {}
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "DCNOW-SEND TO DC CALLS NOW;ADD CMT",
+
+                    "position": "before",
+
+                    "value": "x"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "ENTER"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "OVRPJ-OVERRIDE: PJ",
+
+                    "position": "before",
+
+                    "value": " "
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "PF8"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "MDRET-RET TO PT PER MD; CXL S022",
+
+                    "position": "before",
+
+                    "value": "x"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "row": 14,
+
+                    "column": 51,
+
+                    "value": "PJ"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "ENTER"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "PF2"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "label": "NEXT SCREEN",
+
+                    "value": "TRIP ",
+
+                    "position": "after"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "ENTER"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "ENTER"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "PF10"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "PF3"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "row": 22,
+
+                    "column": 7,
+
+                    "value": "$concat(${newinvoiceNum},${newfillNum})"
+
+                }
+
+            },
+
+            {
+
+                "input": {
+
+                    "keyname": "ENTER"
+
+                }
+
+            }
+
+        ]
+
+    }
+
+}
