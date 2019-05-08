@@ -1,0 +1,14 @@
+{
+  "testCase": {
+    "name": "MAR_TC_15",
+    "Curator": "ej3117",    
+      "testSteps": [
+        {
+          "literalvalues": {
+            "username": "asda",
+            "password": "345tgh"
+          }
+        }
+      ]
+  }
+}
